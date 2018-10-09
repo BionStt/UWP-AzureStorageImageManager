@@ -29,10 +29,6 @@
                 <AppBarButton Icon="Delete" IsEnabled="{Binding IsDeleteButtonEnabled}" Label="Delete" Command="{Binding CommandDelete}" Style="{StaticResource AppBarButtonRevealStyle}"/>
                 <AppBarButton Icon="Upload" IsEnabled="{Binding IsRefereshEnabled}" Label="Upload" x:Name="BtnUpload" Click="BtnUpload_OnClick" Style="{StaticResource AppBarButtonRevealStyle}"/>
             </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Label="About" x:Name="BtnAbout" Click="BtnAbout_OnClick" Style="{StaticResource AppBarButtonRevealStyle}"/>
-                <AppBarButton Label="Privacy" x:Name="BtnPrivacy" Click="BtnPrivacy_OnClick" Style="{StaticResource AppBarButtonRevealStyle}" />
-            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -42,77 +38,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-
-        <ContentDialog x:Name="DigAbout"
-                       Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                       FullSizeDesired="False" d:IsHidden="True"
-                       Title="About" IsPrimaryButtonEnabled="True" PrimaryButtonText="OK">
-            <Grid DataContext="{Binding Source={StaticResource Locator}, Path=About}" Margin="0,10,0,0">
-                <StackPanel>
-                    <TextBlock Text="{Binding Publisher}" />
-                    <TextBlock>
-                            <Run>Version</Run>
-                            <Run Text="{Binding Version}" /> (<Run Text="{Binding Architecture}" />)
-                    </TextBlock>
-
-                    <TextBlock x:Uid="TxtAboutText" TextWrapping="Wrap" Margin="0,20,0,10" />
-                    <HyperlinkButton x:Uid="LnkVisitBlog" Content="" NavigateUri="http://edi.wang" />
-                </StackPanel>
-            </Grid>
-        </ContentDialog>
-
-        <ContentDialog x:Name="DigPp" Grid.Row="0" Grid.RowSpan="3" IsPrimaryButtonEnabled="True" PrimaryButtonText="OK" Title="Privacy Policy" d:IsHidden="True">
-            <ContentDialog.Resources>
-                <Style TargetType="TextBlock" x:Key="Title">
-                    <Setter Property="FontWeight" Value="Bold" />
-                </Style>
-
-                <Style TargetType="TextBlock" x:Key="Body">
-                    <Setter Property="Foreground" Value="#333" />
-                    <Setter Property="TextWrapping" Value="Wrap" />
-                </Style>
-            </ContentDialog.Resources>
-            <ScrollViewer>
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock Text="What information do we collect?" Style="{StaticResource Title}" />
-                    <TextBlock Style="{StaticResource Body}" Margin="0,0,0,20">
-                    We DO NOT collect any information from you, including your Azure storage account name, key, and container name.
-                    </TextBlock>
-
-                    <TextBlock Text="Do we use cookies?" Style="{StaticResource Title}"/>
-                    <TextBlock Style="{StaticResource Body}" Margin="0,0,0,20">
-                    No, this application is not an web-based application. It does not require cookies.
-                    </TextBlock>
-
-                    <TextBlock Style="{StaticResource Title}" Text="Do we disclose any information to outside parties?" />
-                    <TextBlock Style="{StaticResource Body}" Margin="0,0,0,20">
-                        We do not sell, trade, or otherwise transfer to outside parties your personal information.
-                    </TextBlock>
-
-                    <TextBlock Text="Your Consent" Style="{StaticResource Title}" />
-                    <TextBlock Style="{StaticResource Body}" Margin="0,0,0,20">
-                        By using this App, you constent to our privacy policy.
-                    </TextBlock>
-
-                    <TextBlock Text="Changes to our privacy policy" Style="{StaticResource Title}" />
-                    <TextBlock Style="{StaticResource Body}">
-                        If we decide to change our privacy policy, we will post those changes on this page, and/or update the privacy policy modification data below.
-                    </TextBlock>
-                    <TextBlock Style="{StaticResource Body}" Margin="0,0,0,20">
-                        This policy was last modified on 11/02/2016
-                    </TextBlock>
-
-                    <TextBlock Text="Contacting Us" Style="{StaticResource Title}" />
-                    <TextBlock Style="{StaticResource Body}">
-                    If there are any questions regarding this privacy policy you may contact us using the information below.
-                    </TextBlock>
-                    <TextBlock Style="{StaticResource Body}" Margin="0,0,0,20">
-                    Edi.Wang@outlook.com
-                    </TextBlock>
-                </StackPanel>
-            </ScrollViewer>
-        </ContentDialog>
 
         <Grid Grid.Row="0" Background="{StaticResource SystemControlBackgroundAccentBrush}" Padding="10">
             <TextBlock Text="{Binding SelectedContainer.ServiceClient.Credentials.AccountName, Converter={StaticResource StringFormatConverter}, ConverterParameter='Account Name: {0}'}" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0,0,0,5" Opacity="0.7" HorizontalAlignment="Right" VerticalAlignment="Bottom" />

@@ -92,11 +92,6 @@ namespace AzureStorageImageManager
             GrdResults.SelectionMode = ListViewSelectionMode.Single;
         }
 
-        private async void BtnAbout_OnClick(object sender, RoutedEventArgs e)
-        {
-            await DigAbout.ShowAsync();
-        }
-
         private async void GrdResults_OnDrop(object sender, DragEventArgs e)
         {
             if (e.DataView.Contains(StandardDataFormats.StorageItems))
@@ -105,8 +100,7 @@ namespace AzureStorageImageManager
 
                 if (items.Any())
                 {
-                    var storageFile = items[0] as StorageFile;
-                    if (storageFile != null)
+                    if (items[0] is StorageFile storageFile)
                     {
                         var contentType = storageFile.ContentType;
 
@@ -174,17 +168,11 @@ namespace AzureStorageImageManager
             flyoutBase.ShowAt(senderElement);
         }
 
-        private async void BtnPrivacy_OnClick(object sender, RoutedEventArgs e)
-        {
-            await DigPp.ShowAsync();
-        }
-
         private async void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             MainViewModel.IsBusy = true;
             var frameworkElement = e.OriginalSource as FrameworkElement;
-            var datacontext = frameworkElement?.DataContext as BlobImage;
-            if (datacontext != null)
+            if (frameworkElement?.DataContext is BlobImage datacontext)
             {
                 await MainViewModel.DeleteSingleItemAsync(datacontext);
             }
@@ -195,8 +183,7 @@ namespace AzureStorageImageManager
         private async void BtnViewLarge_Click(object sender, RoutedEventArgs e)
         {
             var frameworkElement = e.OriginalSource as FrameworkElement;
-            var datacontext = frameworkElement?.DataContext as BlobImage;
-            if (datacontext != null)
+            if (frameworkElement?.DataContext is BlobImage datacontext)
             {
                 await Windows.System.Launcher.LaunchUriAsync(datacontext.Uri);
             }
@@ -210,8 +197,7 @@ namespace AzureStorageImageManager
         private async void BtnRename_Click(object sender, RoutedEventArgs e)
         {
             var frameworkElement = e.OriginalSource as FrameworkElement;
-            var datacontext = frameworkElement?.DataContext as BlobImage;
-            if (datacontext != null)
+            if (frameworkElement?.DataContext is BlobImage datacontext)
             {
                 TxtOldName.Text = datacontext.FileName;
                 TxtNewName.Text = "New_" + datacontext.FileName;
