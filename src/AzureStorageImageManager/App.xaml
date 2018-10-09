@@ -1,0 +1,16 @@
+﻿<Application
+    x:Class="AzureStorageImageManager.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AzureStorageImageManager"
+    xmlns:converters="using:Edi.UWP.Helpers.Converters"
+    xmlns:viewModel="using:AzureStorageImageManager.ViewModel"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <viewModel:ViewModelLocator x:Key="Locator" xmlns:vm="using:AzureStorageImageManager.ViewModel" />
+        <converters:StringFormatConverter x:Key="StringFormatConverter" />
+        <converters:ColorHexStringToBrushConverter x:Key="ColorHexStringToBrushConverter" />
+        <converters:ColorHexStringToColorConverter x:Key="ColorHexStringToColorConverter" />
+        <local:SelectionChangedConverter x:Key="SelectionChangedConverter" />
+    </Application.Resources>
+</Application>
